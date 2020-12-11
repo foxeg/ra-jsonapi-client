@@ -96,6 +96,20 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
     case DELETE:
       url = `${apiUrl}/${resource}/${params.id}`;
       options.method = 'DELETE';
+
+      const attributes = params.data;
+      delete attributes.id;
+
+      const data = {
+        data: {
+          id: params.id,
+          type: resource,
+          attributes,
+        },
+      };
+
+      options.method = settings.updateMethod;
+      options.data = JSON.stringify(data);
       break;
 
     case GET_MANY: {

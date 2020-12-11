@@ -100,25 +100,39 @@ exports.default = function (apiUrl) {
         {
           url = apiUrl + '/' + resource + '/' + params.id;
 
-          var attributes = params.data;
-          delete attributes.id;
+          var _attributes = params.data;
+          delete _attributes.id;
 
-          var data = {
+          var _data = {
             data: {
               id: params.id,
               type: resource,
-              attributes: attributes
+              attributes: _attributes
             }
           };
 
           options.method = settings.updateMethod;
-          options.data = JSON.stringify(data);
+          options.data = JSON.stringify(_data);
           break;
         }
 
       case _actions.DELETE:
         url = apiUrl + '/' + resource + '/' + params.id;
         options.method = 'DELETE';
+
+        var attributes = params.data;
+        delete attributes.id;
+
+        var data = {
+          data: {
+            id: params.id,
+            type: resource,
+            attributes: attributes
+          }
+        };
+
+        options.method = settings.updateMethod;
+        options.data = JSON.stringify(data);
         break;
 
       case _actions.GET_MANY:
@@ -207,12 +221,12 @@ exports.default = function (apiUrl) {
           {
             var _response$data$data = response.data.data,
                 id = _response$data$data.id,
-                _attributes = _response$data$data.attributes;
+                _attributes2 = _response$data$data.attributes;
 
 
             return {
               data: _extends({
-                id: id }, _attributes)
+                id: id }, _attributes2)
             };
           }
 
@@ -220,12 +234,12 @@ exports.default = function (apiUrl) {
           {
             var _response$data$data2 = response.data.data,
                 _id = _response$data$data2.id,
-                _attributes2 = _response$data$data2.attributes;
+                _attributes3 = _response$data$data2.attributes;
 
 
             return {
               data: _extends({
-                id: _id }, _attributes2)
+                id: _id }, _attributes3)
             };
           }
 
@@ -233,12 +247,12 @@ exports.default = function (apiUrl) {
           {
             var _response$data$data3 = response.data.data,
                 _id2 = _response$data$data3.id,
-                _attributes3 = _response$data$data3.attributes;
+                _attributes4 = _response$data$data3.attributes;
 
 
             return {
               data: _extends({
-                id: _id2 }, _attributes3)
+                id: _id2 }, _attributes4)
             };
           }
 
