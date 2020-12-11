@@ -118,7 +118,6 @@ exports.default = function (apiUrl) {
 
       case _actions.DELETE:
         url = apiUrl + '/' + resource + '/' + params.id;
-        options.method = 'DELETE';
 
         var attributes = params.data;
         delete attributes.id;
@@ -131,7 +130,7 @@ exports.default = function (apiUrl) {
           }
         };
 
-        options.method = settings.updateMethod;
+        options.method = 'DELETE';
         options.data = JSON.stringify(data);
         break;
 

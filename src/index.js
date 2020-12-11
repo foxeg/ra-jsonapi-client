@@ -95,7 +95,6 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
 
     case DELETE:
       url = `${apiUrl}/${resource}/${params.id}`;
-      options.method = 'DELETE';
 
       const attributes = params.data;
       delete attributes.id;
@@ -108,7 +107,7 @@ export default (apiUrl, userSettings = {}) => (type, resource, params) => {
         },
       };
 
-      options.method = settings.updateMethod;
+      options.method = 'DELETE';
       options.data = JSON.stringify(data);
       break;
 
